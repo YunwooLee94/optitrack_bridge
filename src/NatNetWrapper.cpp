@@ -172,15 +172,15 @@ int NatNetWrapper::run() {
 
                 // Initialize publisher by message type
                 if(message_type == MessageType::POSE){
-                    pubs_vision_pose.emplace_back(nh.advertise<geometry_msgs::PoseStamped>(prefix + std::string(pRB->szName) + "/poseStamped", 10));
+                    pubs_vision_pose.emplace_back(nh.advertise<geometry_msgs::PoseStamped>(prefix + std::string(pRB->szName) + "/poseStamped", 1));
                 }
                 else if(message_type == MessageType::ODOMETRY){
-                    pubs_vision_odom.emplace_back(nh.advertise<nav_msgs::Odometry>(prefix + std::string(pRB->szName) + "/odometry", 10));
+                    pubs_vision_odom.emplace_back(nh.advertise<nav_msgs::Odometry>(prefix + std::string(pRB->szName) + "/odometry", 1));
                     linearKalmanFilters.emplace_back(std::make_unique<LinearKalmanFilter>());
                 }
 
                 if(publish_labeled_marker_pose_array){
-                    pubs_labeled_marker_pose_array.emplace_back(nh.advertise<geometry_msgs::PoseArray>(prefix + std::string(pRB->szName) + "/markerPoseArray", 10));
+                    pubs_labeled_marker_pose_array.emplace_back(nh.advertise<geometry_msgs::PoseArray>(prefix + std::string(pRB->szName) + "/markerPoseArray", 1));
                 }
 
 //                if ( pRB->MarkerPositions != NULL && pRB->MarkerRequiredLabels != NULL )
